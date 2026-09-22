@@ -1,0 +1,40 @@
+name: Build Android APK
+
+# यह वर्कफ़्लो तब ट्रिगर होगा जब आप 'main' या 'master' ब्रांच पर कोड push करेंगे
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    # 1. GitHub रिपॉजिटरी से कोड को रनर (server) पर लाना
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    # 2. Java (JDK 17) एनवायरनमेंट सेट करना (आधुनिक Android प्रोजेक्ट्स के लिए ज़रूरी)
+    - name: Set up JDK 17
+      uses: actions/actions-setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        cache: gradle
+
+    # 3. Gradle wrapper को एग्जीक्यूट (execute) करने की परमिशन देना
+    - name: Grant Execute Permission for Gradlew
+      run: chmod +x gradlew
+
+    # 4. प्रोजेक्ट को बिल्ड करना और Debug APK जनरेट करना
+    - name: Build Debug APK
+      run: ./gradlew assembleDebug
+
+    # 5. बने हुए APK को GitHub Actions Artifacts में अपलोड करना (ताकि आप इसे डाउनलोड कर सकें)
+    - name: Upload APK Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: app-debug-apk
+        path: app/build/outputs/apk/debug/app-debug.apk

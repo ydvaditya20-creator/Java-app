@@ -24,7 +24,7 @@ jobs:
           cache: 'gradle'
 
       - name: Set up Android SDK
-        uses: android-actions/setup-android@v4 # 👈 v3 se badal kar v4 kar diya hai
+        uses: android-actions/setup-android@v4
 
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
@@ -43,7 +43,8 @@ jobs:
 
       - name: Make Gradle Wrapper Executable & Generate if missing
         run: |
-          gradle wrapper --gradle-version 8.11.1 --distribution-type bin || true
+          # 👈 Yahan version 8.11.1 se badal kar 9.3.1 kar diya hai taaki minimum requirement poori ho sake
+          gradle wrapper --gradle-version 9.3.1 --distribution-type bin || true
           chmod +x ./gradlew || true
 
       - name: Build Debug APK

@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     
     // अपना Firebase Storage URL या Firebase Functions का HTTP URL यहाँ डालें
     // उदाहरण: "https://googleapis.com"
-    private final String FIREBASE_UPLOAD_URL = "YOUR_FIREBASE_HTTP_URL_HERE";
+    private final String FIREBASE_UPLOAD_URL = "https://shemacc-3ccac-default-rtdb.asia-southeast1.firebasedatabase.app";
 
     @Override
     protected void Bundle) {

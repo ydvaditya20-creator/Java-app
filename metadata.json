@@ -1,6 +1,0 @@
-{
-  "name": "Zenaral",
-  "description": "Multi-line journal voucher ledger and accounting dashboard with Natwa and Basahi branch tracking.",
-  "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
-}
